@@ -11,9 +11,10 @@ function App() {
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="top-middle" reverseOrder={false} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/category" element={<CategoryPage />} />
           <Route path="/category/:type" element={<CategoryPage />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
