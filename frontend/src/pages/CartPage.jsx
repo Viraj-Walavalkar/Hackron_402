@@ -36,7 +36,7 @@ function CartPage() {
                 const previousItem = previousCartItems.current.find(
                     item => item.product_id === currentItem.product_id
                 );
-                
+
                 if (previousItem && currentItem.discount > previousItem.discount) {
                     const increase = currentItem.discount - previousItem.discount;
                     showDiscountNotification(currentItem.name, increase);
@@ -51,7 +51,7 @@ function CartPage() {
             console.log("Notifications not supported");
             return;
         }
-        
+
         if (Notification.permission === "granted") {
             try {
                 new Notification("Discount Alert! 🎉", {
@@ -154,14 +154,14 @@ function CartPage() {
             <div className="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
                 <div className="flex justify-between items-center p-6 border-b">
                     <h2 className="text-xl font-semibold text-gray-900">Order Summary</h2>
-                    <button 
+                    <button
                         onClick={() => setShowCheckout(false)}
                         className="text-gray-400 hover:text-gray-500"
                     >
                         <X className="w-6 h-6" />
                     </button>
                 </div>
-                
+
                 <div className="p-6">
                     <div className="space-y-4">
                         {cartItems.map((item) => (
@@ -173,38 +173,38 @@ function CartPage() {
                                     {item.discount > 0 ? (
                                         <>
                                             <span className="line-through text-gray-400 mr-2">
-                                                ${calculateItemTotal(item).toFixed(2)}
+                                                ₹{calculateItemTotal(item).toFixed(2)}
                                             </span>
                                             <span className="text-gray-900">
-                                                ${calculateDiscountedItemTotal(item).toFixed(2)}
+                                                ₹{calculateDiscountedItemTotal(item).toFixed(2)}
                                             </span>
                                         </>
                                     ) : (
                                         <span className="text-gray-900">
-                                            ${calculateItemTotal(item).toFixed(2)}
+                                            ₹{calculateItemTotal(item).toFixed(2)}
                                         </span>
                                     )}
                                 </div>
                             </div>
                         ))}
                     </div>
-                    
+
                     <div className="mt-6 pt-6 border-t">
                         <div className="flex justify-between mb-2">
                             <span className="text-gray-600">Subtotal</span>
-                            <span className="text-gray-900">${calculateSubtotal().toFixed(2)}</span>
+                            <span className="text-gray-900">₹{calculateSubtotal().toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between mb-2 text-green-600">
                             <span>Total Discount</span>
-                            <span>-${calculateTotalDiscount().toFixed(2)}</span>
+                            <span>-₹{calculateTotalDiscount().toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between font-semibold text-lg mt-4">
                             <span>Total</span>
-                            <span>${calculateTotal().toFixed(2)}</span>
+                            <span>₹{calculateTotal().toFixed(2)}</span>
                         </div>
                     </div>
 
-                    <button 
+                    <button
                         className="w-full mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                         onClick={() => {
                             // alert('Processing payment...');
@@ -269,10 +269,10 @@ function CartPage() {
                                             {item.discount > 0 ? (
                                                 <>
                                                     <span className="line-through text-gray-400">
-                                                        ${calculateItemTotal(item).toFixed(2)}
+                                                    ₹{calculateItemTotal(item).toFixed(2)}
                                                     </span>
                                                     <span className="text-gray-900">
-                                                        ${calculateDiscountedItemTotal(item).toFixed(2)}
+                                                    ₹{calculateDiscountedItemTotal(item).toFixed(2)}
                                                     </span>
                                                     <span className="text-green-600 text-sm bg-green-50 px-2 py-1 rounded">
                                                         {item.discount.toFixed(1)}% OFF
@@ -280,7 +280,7 @@ function CartPage() {
                                                 </>
                                             ) : (
                                                 <span className="text-gray-600">
-                                                    ${calculateItemTotal(item).toFixed(2)}
+                                                    ₹{calculateItemTotal(item).toFixed(2)}
                                                 </span>
                                             )}
                                         </div>
@@ -288,21 +288,21 @@ function CartPage() {
 
                                     <div className="flex items-center gap-6">
                                         <div className="flex items-center gap-2">
-                                            <button 
+                                            <button
                                                 className="p-1 hover:bg-gray-100 rounded"
                                                 onClick={() => handleAddToCart(item, -1)}
                                             >
                                                 <Minus className="w-5 h-5 text-gray-600" />
                                             </button>
                                             <span className="w-12 text-center font-medium">{item.quantity}</span>
-                                            <button 
+                                            <button
                                                 className="p-1 hover:bg-gray-100 rounded"
                                                 onClick={() => handleAddToCart(item, 1)}
                                             >
                                                 <Plus className="w-5 h-5 text-gray-600" />
                                             </button>
                                         </div>
-                                        <button 
+                                        <button
                                             className="p-2 hover:bg-red-50 rounded text-red-500"
                                             onClick={() => handleDelete(item.product_id)}
                                         >
@@ -320,20 +320,20 @@ function CartPage() {
                                     <div className="mt-1">
                                         {calculateTotalDiscount() > 0 && (
                                             <p className="text-gray-500 line-through">
-                                                ${calculateSubtotal().toFixed(2)}
+                                                ₹{calculateSubtotal().toFixed(2)}
                                             </p>
                                         )}
                                         <p className="text-2xl font-bold text-gray-900">
-                                            ${calculateTotal().toFixed(2)}
+                                        ₹{calculateTotal().toFixed(2)}
                                         </p>
                                         {calculateTotalDiscount() > 0 && (
                                             <p className="text-green-600 text-sm">
-                                                You save: ${calculateTotalDiscount().toFixed(2)}
+                                                You save: ₹{calculateTotalDiscount().toFixed(2)}
                                             </p>
                                         )}
                                     </div>
                                 </div>
-                                <button 
+                                <button
                                     className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                                     onClick={() => setShowCheckout(true)}
                                 >
