@@ -46,7 +46,7 @@ const mockProducts = {
   ]
 };
 
-const API_URL = 'http://127.0.0.1:8000/inventory'; // Replace with your actual API URL
+const API_URL = 'https://hackron-402.onrender.com/inventory'; // Replace with your actual API URL
 
 export const getProductsByCategory = async (category) => {
   try {
