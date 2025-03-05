@@ -22,7 +22,7 @@ origins = [
     "http://localhost:3000",  # If you use a frontend running on port 3000
     "https://your-frontend-domain.com",
     "http://localhost:5173",
-      "*"  # Replace with your actual frontend domain if deployed
+    "*"  # Replace with your actual frontend domain if deployed
 ]
 
 app.add_middleware(
@@ -58,7 +58,8 @@ async def get_inventory(category: Optional[str] = Query(None, description="Filte
             description=item["description"],
             discount=item.get("discount", 0.0),
             listing_date=item["listing_date"],
-            category = item["category"]
+            category = item["category"],
+            image = item["image"]
         )
         for item in items
     ]
