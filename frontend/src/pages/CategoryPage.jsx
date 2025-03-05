@@ -60,10 +60,10 @@ const CategoryPage = () => {
 
             const data = await response.json();
             console.log('Product added to cart:', data);
-            alert('Product added to cart successfully!');
+            
         } catch (error) {
             console.error('Error adding to cart:', error);
-            alert('Failed to add product to cart. Please try again.');
+            
         }
     };
 
