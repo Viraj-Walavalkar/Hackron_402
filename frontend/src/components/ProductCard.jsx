@@ -2,11 +2,10 @@ import React from 'react';
 import { calculateDiscount } from '../utils/discount';
 import { ShoppingCart } from 'lucide-react';
 
-
-
 export const ProductCard = ({ product, onAddToCart }) => {
   const discount = calculateDiscount(product.expiryDate, product.price);
   const finalPrice = product.price - discount;
+  const isSoldOut = product.quantity === 0;
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -22,15 +21,21 @@ export const ProductCard = ({ product, onAddToCart }) => {
         </div>
         <p className="text-sm text-gray-600 mt-1">Units available: {product.quantity}</p>
         <p className="text-sm text-gray-600">Expires: {new Date(product.expiry).toLocaleDateString()}</p>
-        <button
-          onClick={() => onAddToCart(product)}
-          disabled={product.units === 0}
-          className="mt-3 w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 disabled:bg-gray-300 flex items-center justify-center gap-2"
-        >
-          <ShoppingCart size={20} />
-          Add to Cart
-        </button>
+        
+        {isSoldOut ? (
+          <span className="mt-3 w-full block bg-red-500 text-white py-2 px-4 rounded-md text-center">
+            Sold Out
+          </span>
+        ) : (
+          <button
+            onClick={() => onAddToCart(product)}
+            className="mt-3 w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 flex items-center justify-center gap-2"
+          >
+            <ShoppingCart size={20} />
+            Add to Cart
+          </button>
+        )}
       </div>
-    </div>
-  );
+    </div>
+  );
 };
