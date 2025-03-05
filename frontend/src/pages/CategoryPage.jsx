@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const CategoryPage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const { type } = useParams()
-
+    const { type } = useParams();
 
     // Replace with your actual API endpoint
     const API_URL = `https://hackron-402.onrender.com/inventory?category=${type}`;
@@ -35,7 +35,7 @@ const CategoryPage = () => {
         };
 
         fetchProducts();
-    }, []);
+    }, [type]); // Refetch when category changes
 
     const handleAddToCart = async (product) => {
         const API_CART_URL = 'https://hackron-402.onrender.com/cart/add'; // Replace with your actual API endpoint
@@ -61,9 +61,13 @@ const CategoryPage = () => {
             const data = await response.json();
             console.log('Product added to cart:', data);
             
+            // Show success toast notification
+            toast.success(`${product.name} added to cart! 🛒`);
+
         } catch (error) {
             console.error('Error adding to cart:', error);
-            
+            // Show error toast notification
+            toast.error('Failed to add item to cart. Try again.');
         }
     };
 
@@ -104,4 +108,4 @@ const CategoryPage = () => {
     );
 };
 
-export default CategoryPage;
+export default CategoryPage;
