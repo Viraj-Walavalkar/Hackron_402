@@ -19,7 +19,7 @@ function CartPage() {
 
     const fetchCartItems = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/get_cart');
+            const response = await axios.get('https://hackron-402.onrender.com/get_cart');
             const data = response.data;
             setCartItems(data.items || []);
             checkForDiscountChanges(data.items || []);
@@ -86,7 +86,7 @@ function CartPage() {
 
     const handleAddToCart = async (product, quant) => {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/cart/add', {
+            const response = await axios.post('https://hackron-402.onrender.com/cart/add', {
                 product_id: product.product_id,
                 quantity: quant,
             });
@@ -103,7 +103,7 @@ function CartPage() {
 
     const handleDelete = async (itemId) => {
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/remove_from_cart?product_id=${itemId}`);
+            const response = await axios.post(`https://hackron-402.onrender.com/remove_from_cart?product_id=${itemId}`);
             if (response.status === 200) {
                 console.log("Item deleted successfully");
                 await fetchCartItems();
