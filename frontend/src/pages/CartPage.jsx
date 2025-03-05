@@ -97,9 +97,19 @@ function CartPage() {
             }
         } catch (error) {
             console.error('Error updating cart:', error);
-           
+            alert('Failed to update cart. Please try again.');
         }
     };
+
+    const handlePayment = async () => {
+        try {
+            const response = await axios.post(`https://hackron-402.onrender.com/buy_cart`);
+            fetchCartItems()
+        } catch (error) {
+            console.error("Error deleting item:", error);
+            alert('Failed Payment');
+        }
+    }
 
     const handleDelete = async (itemId) => {
         try {
@@ -110,7 +120,7 @@ function CartPage() {
             }
         } catch (error) {
             console.error("Error deleting item:", error);
-          
+            alert('Failed to remove item. Please try again.');
         }
     };
 
@@ -197,7 +207,8 @@ function CartPage() {
                     <button 
                         className="w-full mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                         onClick={() => {
-                            alert('Processing payment...');
+                            // alert('Processing payment...');
+                            handlePayment()
                             setShowCheckout(false);
                         }}
                     >
