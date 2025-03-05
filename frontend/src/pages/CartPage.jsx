@@ -97,7 +97,7 @@ function CartPage() {
             }
         } catch (error) {
             console.error('Error updating cart:', error);
-            alert('Failed to update cart. Please try again.');
+           
         }
     };
 
@@ -110,7 +110,7 @@ function CartPage() {
             }
         } catch (error) {
             console.error("Error deleting item:", error);
-            alert('Failed to remove item. Please try again.');
+          
         }
     };
 
