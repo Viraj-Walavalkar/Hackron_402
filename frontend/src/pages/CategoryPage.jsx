@@ -11,7 +11,7 @@ const CategoryPage = () => {
 
 
     // Replace with your actual API endpoint
-    const API_URL = `http://127.0.0.1:8000/inventory?category=${type}`;
+    const API_URL = `https://hackron-402.onrender.com/inventory?category=${type}`;
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -38,7 +38,7 @@ const CategoryPage = () => {
     }, []);
 
     const handleAddToCart = async (product) => {
-        const API_CART_URL = 'http://127.0.0.1:8000/cart/add'; // Replace with your actual API endpoint
+        const API_CART_URL = 'https://hackron-402.onrender.com/cart/add'; // Replace with your actual API endpoint
 
         console.log('Adding to cart:', product);
 
