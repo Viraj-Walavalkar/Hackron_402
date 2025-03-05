@@ -8,9 +8,10 @@ const CategoryPage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-    const { type } = useParams();
+    let { type } = useParams();
 
     // Replace with your actual API endpoint
+    if (type === undefined) type = "";
     const API_URL = `https://hackron-402.onrender.com/inventory?category=${type}`;
 
     useEffect(() => {
