@@ -50,6 +50,7 @@ class ProductCreateRequest(BaseModel):
     discount: float = 0.0
     listing_date: str
     category : str
+    image : str
     
 class ProductResponse(BaseModel):
     id: str  
